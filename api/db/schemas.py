@@ -81,6 +81,9 @@ class InMemoryDB:
 
         Args:
             book_id (int): Book ID.
+        
+        Returns:
+            bool: True if book was deleted, False if book was not found.
         """
         if book_id in self.books:
             del self.books[book_id]
