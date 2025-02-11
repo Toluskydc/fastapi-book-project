@@ -10,6 +10,9 @@ COPY . /app
 # Install system dependencies
 RUN apt update && apt install -y nginx curl && rm -rf /var/lib/apt/lists/*
 
+# Copy Nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Copy the start script
 COPY start.sh /start.sh
 
@@ -24,4 +27,5 @@ RUN pip install --no-cache-dir --upgrade pip && \
 EXPOSE 80 8000
 
 # Start Nginx and FastAPI
-CMD ["/start.sh"]
+CMD ["/bin/bash", "/start.sh"]
+
