@@ -1,13 +1,43 @@
-version: '3.8'
+# services:
+#   app:
+#     build: .
+#     container_name: app
+#     restart: always
+#     ports:
+#       - "8000:8000"
+#     healthcheck:
+#       test: ["CMD", "curl", "-f", "http://localhost:8000"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 5
+
+#   nginx_proxy:
+#     image: nginx:latest
+#     container_name: nginx_proxy
+#     restart: always
+#     ports:
+#       - "80:80"
+#     volumes:
+#       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+#     depends_on:
+#       app:
+#         condition: service_healthy
+
 
 services:
+
   app:
     build: .
     container_name: app
     restart: always
     ports:
       - "8000:8000"
-
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]  # <==== Change to /docs to avoid redirect issues
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s  # <==== Add delay to wait for FastAPI to fully start
   nginx_proxy:
     image: nginx:latest
     container_name: nginx_proxy
@@ -17,4 +47,5 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - app  # Nginx should wait for FastAPI
+      app:
+        condition: service_healthy

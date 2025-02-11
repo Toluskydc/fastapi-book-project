@@ -7,20 +7,16 @@ WORKDIR /app
 # Copy application files
 COPY . /app
 
-# Install system dependencies and update package lists
-RUN apt update && apt install -y \
-    nginx \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy Nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Install system dependencies
+RUN apt update && apt install -y curl && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Expose necessary ports
-EXPOSE 80 8000
+# Expose FastAPI port
+EXPOSE 8000
 
-# Start Nginx and FastAPI
-CMD service nginx start && uvicorn main:app --host 0.0.0.0 --port 8000
+# Start FastAPI server
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]
+
