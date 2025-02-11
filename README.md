@@ -144,3 +144,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 For support, please open an issue in the GitHub repository.
+
+
+
+        location / {
+            proxy_pass https://fastapi-book-project-ptpn.onrender.com/;
+            proxy_redirect off;
+            proxy_ssl_server_name on;
+            proxy_set_header Host fastapi-book-project-ptpn.onrender.com;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            rewrite ^(.*)/$ $1 break;
+        }
