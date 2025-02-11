@@ -1,0 +1,10 @@
+services:
+  - name: fastapi-app
+    type: web
+    env: docker
+    plan: free
+    region: oregon  # Choose your region
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
