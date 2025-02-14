@@ -36,8 +36,6 @@ fastapi-book-project/
 │   ├── __init__.py
 │   └── test_books.py       # API endpoint tests
 ├── main.py                 # Application entry point
-├── Dockerfile        # Docker setup for FastAPI
-├── docker-compose.yml # Multi-container setup
 ├── nginx.conf        # Nginx reverse proxy 
 ├── requirements.txt  # Python dependencies
 ├── README.md         # Project documentation
