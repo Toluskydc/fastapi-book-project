@@ -53,7 +53,6 @@ fastapi-book-project/
 - Nginx (Reverse Proxy)
 - Docker & Docker Compose (Containerization)
 - GitHub Actions (CI/CD automation)
-- Render (Deployment platform)
 
 ## Installation
 
