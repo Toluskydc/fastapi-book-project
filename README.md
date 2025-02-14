@@ -79,13 +79,11 @@ pip install -r requirements.txt
 
 ## Running the Application
 
-3. Run with Docker Compose
 ```sh
-docker-compose up --build
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
-Your API will be accessible at: **http://localhost/api/v1/books/**
 
-2. Access the API documentation:
+## Access the API documentation:
 
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
@@ -142,13 +140,9 @@ The API includes proper error handling for:
 
 ---
 
-## 🌍 Deployment on Render
-This project uses **GitHub Actions** for CI/CD and **Render** for deployment.
+## 🌍 Deployment on AWS EC2 Server
+This project uses **GitHub Actions** for CI/CD and **AWS EC2 Server** for deployment.
 
-### **Deployment Workflow:**
-1. Push changes to the `main` branch.
-2. GitHub Actions automatically builds and pushes the Docker image.
-3. Render deploys the latest version of the app.
 
 ---
 
