@@ -20,7 +20,6 @@ jobs:
           host: 18.204.6.14
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          key_type: 'openSSH'
           script: |
             cd ~/fastapi-book-project
             git pull origin main
